@@ -13,6 +13,8 @@
 #define DIO_CONFIGURED_PORTS        (5U) /* Port A to Port E*/
 #define DIO_CONFIGURED_GROUPS       (3U) /* eg of configured groups (3 groups)*/
 
+#define ChANNELS_PER_PORT           (18U)
+
 /****************************************************************************************************/
 /*                                  [SWS_Dio_91001] Development Errors                              */
 /****************************************************************************************************/
@@ -39,6 +41,11 @@ typedef uint8 Dio_ChannelType;
  * Description : Numeric ID of a DIO port.
  */
 typedef uint8 Dio_PortType;
+#define PORT_A_ID           (Dio_PortType)0x00
+#define PORT_B_ID           (Dio_PortType)0x01
+#define PORT_C_ID           (Dio_PortType)0x02
+#define PORT_D_ID           (Dio_PortType)0x03
+#define PORT_E_ID           (Dio_PortType)0x04
 
 /*
  * Index : 8.2.5 [SWS_Dio_00186]
