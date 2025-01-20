@@ -10,6 +10,39 @@
 #include "Common_Macros.h"
 
 /****************************************************************************************************/
+/*                   MACROS: used in error detection & get version Api                              */
+/****************************************************************************************************/
+#define DIO_MODULE_ID                              (120U)
+#define DIO_MODULE_INSTANCE_ID                     (0U)
+#define DIO_MODULE_VENDOR_ID                       (0xD0) /* My own vendor id (company dependent): highest vid is 0xC7(Real-Time Innovations)*/
+
+/* Module version 1.0.0 */
+#define DIO_MODULE_MAJOR_VERSION                   (1U)
+#define DIO_MODULE_MINOR_VERSION                   (0U)
+#define DIO_MODULE_PATCH_VERSION                   (0U)
+
+/*********************************************************************************************************
+ *                                              API Service Id Macros                                    *
+ *********************************************************************************************************/
+#define DIO_READ_CHANNEL_SID                        (uint8)0x00
+
+#define DIO_WRITE_CHANNEL_SID                       (uint8)0x01
+
+#define DIO_READ_PORT_SID                            (uint8)0x02
+
+#define DIO_WRITE_PORT_SID                          (uint8)0x03
+
+#define DIO_READ_CHANNEL_GROUP_SID                  (uint8)0x04
+
+#define DIO_WRITE_CHANNEL_GROUP_SID                 (uint8)0x05
+
+#define DIO_GET_VERSION_INFO_SID                    (uint8)0x12
+
+#define DIO_FLIP_CHANNEL_SID                        (uint8)0x11
+
+#define DIO_MASKED_WRITE_PORT_SID                   (uint8)0x13
+
+/****************************************************************************************************/
 /*                                      DioGeneral                                                  */
 /****************************************************************************************************/
 
@@ -35,7 +68,7 @@
  * Default value: --
  * scope: local
  ****************************************************************************************************/
-#define DIO_FLIP_CHANNE_LAPI            (STD_OFF)           
+#define DIO_FLIP_CHANNEL_API            (STD_OFF)           
 
 /****************************************************************************************************
  * SWS Item: [ECUC_Dio_00155]
@@ -57,7 +90,7 @@
  * Default value: false
  * scope: local
  ****************************************************************************************************/
-#define DIO_VERSION_INF_OAPI            (STD_OFF)
+#define DIO_VERSION_INFO_API            (STD_OFF)
 
 /****************************************************************************************************/
 /*                                 Function definitions                                             */
@@ -76,7 +109,7 @@
  *              - STD_HIGH The physical level of the corresponding Pin is STD_HIGH
  *              - STD_LOW The physical level of the corresponding Pin is STD_LOW
  * Description: Returns the value of the specified DIO channel.
-****************************************************************************************************/
+ ****************************************************************************************************/
 Dio_LevelType Dio_ReadChannel (Dio_ChannelType ChannelId);
 
 /****************************************************************************************************
@@ -91,7 +124,7 @@ Dio_LevelType Dio_ReadChannel (Dio_ChannelType ChannelId);
  * Parameters (out): None
  * Return value: None
  * Description: Service to set a level of a channel.
-****************************************************************************************************/
+ ****************************************************************************************************/
 void Dio_WriteChannel (Dio_ChannelType ChannelId, Dio_LevelType Level);
 
 /****************************************************************************************************
@@ -105,7 +138,7 @@ void Dio_WriteChannel (Dio_ChannelType ChannelId, Dio_LevelType Level);
  * Parameters (out): None
  * Return value: Dio_PortLevelType - Level of all channels of that port
  * Description: Returns the level of all channels of that port.
-****************************************************************************************************/
+ ****************************************************************************************************/
 Dio_PortLevelType Dio_ReadPort (Dio_PortType PortId);
 
 /****************************************************************************************************
@@ -120,7 +153,7 @@ Dio_PortLevelType Dio_ReadPort (Dio_PortType PortId);
  * Parameters (out): None
  * Return value: None
  * Description: Service to set a value of the port.
-****************************************************************************************************/
+ ****************************************************************************************************/
 void Dio_WritePort (Dio_PortType PortId, Dio_PortLevelType Level);
 
 /****************************************************************************************************
@@ -134,7 +167,7 @@ void Dio_WritePort (Dio_PortType PortId, Dio_PortLevelType Level);
  * Parameters (out): None
  * Return value: Dio_PortLevelType Level of a subset of the adjoining bits of a port
  * Description: This Service reads a subset of the adjoining bits of a port.
-****************************************************************************************************/
+ ****************************************************************************************************/
 Dio_PortLevelType Dio_ReadChannelGroup (const Dio_ChannelGroupType* ChannelGroupIdPtr);
 
 /****************************************************************************************************
@@ -149,7 +182,7 @@ Dio_PortLevelType Dio_ReadChannelGroup (const Dio_ChannelGroupType* ChannelGroup
  * Parameters (out): None
  * Return value: None
  * Description: Service to set a subset of the adjoining bits of a port to a specified level
-****************************************************************************************************/
+ ****************************************************************************************************/
 void Dio_WriteChannelGroup (const Dio_ChannelGroupType* ChannelGroupIdPtr, Dio_PortLevelType Level);
 
 /****************************************************************************************************
@@ -163,7 +196,7 @@ void Dio_WriteChannelGroup (const Dio_ChannelGroupType* ChannelGroupIdPtr, Dio_P
  * Parameters (out): VersionInfo - Pointer to where to store the version information of this module
  * Return value: None
  * Description: Service to get the version information of this module.
-****************************************************************************************************/
+ ****************************************************************************************************/
 void Dio_GetVersionInfo (Std_VersionInfoType* VersionInfo);
 
 /****************************************************************************************************
@@ -180,7 +213,7 @@ void Dio_GetVersionInfo (Std_VersionInfoType* VersionInfo);
  *              - STD_LOW The physical level of the corresponding Pin is STD_LOW
  * Description: Service to flip (change from 1 to 0 or from 0 to 1) the level of a channel and 
  *              return the level of the channel after flip.
-****************************************************************************************************/
+ ****************************************************************************************************/
 Dio_LevelType Dio_FlipChannel (Dio_ChannelType ChannelId);
 
 
@@ -197,7 +230,7 @@ Dio_LevelType Dio_FlipChannel (Dio_ChannelType ChannelId);
  * Parameters (out):None
  * Return value: None
  * Description: Service to set the value of a given port with required mask.
-****************************************************************************************************/
+ ****************************************************************************************************/
 void Dio_MaskedWritePort (Dio_PortType PortId, Dio_PortLevelType Level, Dio_PortLevelType Mask);
 
 

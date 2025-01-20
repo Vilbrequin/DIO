@@ -19,13 +19,18 @@
 /*                                  [SWS_Dio_91001] Development Errors                              */
 /****************************************************************************************************/
 
+/* Invalid channel requested */
 #define DIO_E_PARAM_INVALID_CHANNEL_ID          0x0A
 
+/* Invalid port requested */
 #define DIO_E_PARAM_INVALID_PORT_ID             0x14
 
+/* Invalid channel group requested */
 #define DIO_E_PARAM_INVALID_GROUP               0x1F
 
+/* API service called with a NULL pointer */
 #define DIO_E_PARAM_POINTER                     0x20
+
 /****************************************************************************************************/
 /*                                      Types Definitions                                           */
 /****************************************************************************************************/
